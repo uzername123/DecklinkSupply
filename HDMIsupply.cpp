@@ -365,18 +365,15 @@ void startHDMI(void) {
 	// Set up DeckLink device and start its streams
 	double fps = sparkFrameRate();
 	BMDDisplayMode dm = bmdModeHD1080p2398;
-//	BMDDisplayMode dm = bmdModeHD1080p2398;
 	if(fps == 24.0) dm = bmdModeHD1080p24;
+// Changed 25fps bmdMode to 50i because BMD camera uses 50i SDI mode for 25fps
 	if(fps == 25.0) dm = bmdModeHD1080i50;
 	if(abs(fps - 29.97) < 0.01) dm = bmdModeHD1080p2997;
 	if(fps == 30.0) dm = bmdModeHD1080p30;
 	if(fps == 50.0) dm = bmdModeHD1080p50;
 	if(abs(fps - 59.94) < 0.01) dm = bmdModeHD1080p5994;
 	if(fps == 60.0) dm = bmdModeHD1080p6000;
-//UZER_ADD
-	say({"BMD mode: ", dm});
-	dm = bmdModeHD1080i50;
-//UZER_ADD_END
+//
 	IDeckLink *dl;
 	IDeckLinkIterator *dli = CreateDeckLinkIteratorInstance();
 	HRESULT r;
