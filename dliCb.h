@@ -1,6 +1,6 @@
 // The class which handles the frame received callback from the Decklink API
 
-#include "decklink/mac/DeckLinkAPI.h"
+#include <BMD/DeckLinkAPI.h>
 
 struct cbctrl_t {
 	char *frontbuf, *backbuf;
