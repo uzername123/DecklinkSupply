@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -std=c++11 -mtune=native -mf16c -fPIC -DDL_LITTLE_ENDIAN -O3 -Wno-deprecated-register -Wno-multichar -I/usr/local/include
+CFLAGS = -std=c++11 -march=ivybridge -mtune=native -mf16c -fPIC -DDL_LITTLE_ENDIAN -O3 -Wno-deprecated-register -Wno-multichar -I/usr/local/include
 LDFLAGS = -fPIC
 
 ifeq ($(shell uname), Darwin)
