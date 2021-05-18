@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -std=c++11 -march=westmere -mtune=native -mf16c -fPIC -DDL_LITTLE_ENDIAN -O3 -Wno-deprecated-register -Wno-multichar
+CFLAGS = -std=c++11 -mtune=native -mf16c -fPIC -DDL_LITTLE_ENDIAN -O3 -Wno-deprecated-register -Wno-multichar -I/usr/local/include
 LDFLAGS = -fPIC
 
 ifeq ($(shell uname), Darwin)
@@ -24,8 +24,8 @@ HDMIsupply.o: HDMIsupply.cpp *.h Makefile spark.h
 dliCb.o: dliCb.cpp *.h Makefile
 	$(CC) $(CFLAGS) -c dliCb.cpp
 
-DeckLinkAPIDispatch.o: decklink/mac/DeckLinkAPIDispatch.cpp *.h Makefile
-	$(CC) $(CFLAGS) -c decklink/mac/DeckLinkAPIDispatch.cpp
+DeckLinkAPIDispatch.o: /usr/local/include/BMD/DeckLinkAPIDispatch.cpp *.h Makefile
+	$(CC) $(CFLAGS) -c /usr/local/include/BMD/DeckLinkAPIDispatch.cpp
 
 spark.h: Makefile
 	ln -sf `ls /opt/Autodesk/presets/*/sparks/spark.h | head -n1` spark.h

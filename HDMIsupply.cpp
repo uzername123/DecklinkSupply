@@ -11,7 +11,7 @@
 #include <cpuid.h>
 #include "spark.h"
 #include "half.h"
-#include "decklink/mac/DeckLinkAPI.h"
+#include <BMD/DeckLinkAPI.h>
 #include "dliCb.h"
 using namespace std;
 
@@ -52,6 +52,8 @@ char *shmfile = NULL;
 // This will point to the shared struct created by the first instance
 struct cbctrl_t *cbctrl = NULL;
 
+//////
+//////////////////
 // Callback for when YUV headroom button is tapped
 unsigned long *yuvheadroomcb(int what, SparkInfoStruct si) {
 	sparkReprocess();
@@ -363,14 +365,18 @@ void startHDMI(void) {
 	// Set up DeckLink device and start its streams
 	double fps = sparkFrameRate();
 	BMDDisplayMode dm = bmdModeHD1080p2398;
+//	BMDDisplayMode dm = bmdModeHD1080p2398;
 	if(fps == 24.0) dm = bmdModeHD1080p24;
-	if(fps == 25.0) dm = bmdModeHD1080p25;
+	if(fps == 25.0) dm = bmdModeHD1080i50;
 	if(abs(fps - 29.97) < 0.01) dm = bmdModeHD1080p2997;
 	if(fps == 30.0) dm = bmdModeHD1080p30;
 	if(fps == 50.0) dm = bmdModeHD1080p50;
 	if(abs(fps - 59.94) < 0.01) dm = bmdModeHD1080p5994;
 	if(fps == 60.0) dm = bmdModeHD1080p6000;
-
+//UZER_ADD
+	say({"BMD mode: ", dm});
+	dm = bmdModeHD1080i50;
+//UZER_ADD_END
 	IDeckLink *dl;
 	IDeckLinkIterator *dli = CreateDeckLinkIteratorInstance();
 	HRESULT r;
