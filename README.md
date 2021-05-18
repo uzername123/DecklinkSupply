@@ -24,3 +24,7 @@ env HDMISUPPLY_DEBUG=1 /opt/Autodesk/flame_2019.2.1/bin/startApplication
 Only tested on macOS 10.14.1 with Flame 2019.2.1 so far, and requires the older Xcode 9.4.1 to compile since Flame seems to ship with an old copy of install_name_tool which can't handle newer binaries.
 
 It is possible it will work with minimal changes on Linux if the standard Autodesk CentOS setup includes Thunderbolt drivers and the Blackmagic stuff installs properly...
+
+## Linux build
+added changes to sources to use linux BMD SDK (SDK include files location in /usr/local/include/BMD)
+For compilation need to install devtoolset-7 (gcc g++ clang and llvm) because of broken cvtss_sh in gcc4.8.5
